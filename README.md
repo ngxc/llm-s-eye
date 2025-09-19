@@ -21,17 +21,21 @@
 
 ## 模型版本
 
-| Size | LLM 版本       | CLIP 版本                   | 效果说明 |
-|------|----------------|-----------------------------|----------|
-| mini | distilgpt2     | clip-vit-base-patch16       | 实现简单图文描述，训练快 |
-| base | gpt2           | clip-vit-base-patch16       | 基础模型，可以实现比较好的图文描述，训练时长适中 |
-| large| gpt2           | clip-vit-large-patch14      | 视觉增强版本，可以更准确地描述图片内容，训练时间长 |
+| Size  | LLM 版本          | CLIP 版本                   | 效果说明 |
+|-------|-----------------|-----------------------------|----------|
+| mini  | distilgpt2      | clip-vit-base-patch16       | 实现简单图文描述，训练快 |
+| base  | gpt2            | clip-vit-base-patch16       | 基础模型，可以实现比较好的图文描述，训练时长适中 |
+| max   | gpt2+Proj_pro   |    clip-vit-large-patch14 |更大规模的投影层|
+| large | gpt2            | clip-vit-large-patch14      | 视觉增强版本，可以更准确地描述图片内容，训练时间长 |
 
 ---
 
-## 模型原理
+## 模型原理&&结构
 
 本模型通过 **图像投影 + LLM 序列建模 + 对比学习** 实现图文对齐与生成。
+
+结构可以参考训练代码
+为llm—投影层-clip
 
 ---
 
@@ -78,7 +82,7 @@
 
 ---
 
-## 训练 Loss说明
+## 5. 训练 Loss说明
 
 ### 1. contrastive_loss
 - 来源：InfoNCE  
